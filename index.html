@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Image Variation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        background-color: #000;
+      }
+
+      .image {
+        position: absolute;
+        transition: transform 0.2s ease;
+      }
+      h1 {
+        color: white;
+        font-size: 50px;
+        text-align: center;
+        margin-top: 50px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>OI MEU NOME É VITU SOU MÉDICO DAS CORTA FOCAL</h1>
+    <h1>OI MEU NOME É VITU SOU MÉDICO DAS CORTA FOCAL</h1>
+    <h1>OI MEU NOME É VITU SOU MÉDICO DAS CORTA FOCAL</h1>
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1>VEM CONSULTAR COMIGO VEM</h1>
+    <h1>ACEITO PAGAMENTO EM PIZZA E CHURRASCO GREGO</h1>
+    <script>
+      const imageSrc = "img.png"; // Path to your image
+      const imageCount = 50; // Number of images to display
+      const images = [];
+
+      for (let i = 0; i < imageCount; i++) {
+        const img = document.createElement("img");
+        img.src = imageSrc;
+        img.classList.add("image");
+
+        const size = 50 + Math.random() * 200; // Random size between 50 and 250px
+        img.style.width = `${size}px`;
+        img.style.height = "auto";
+        img.style.top = `${Math.random() * 2000}px`; // Random vertical position
+        img.style.left = `${Math.random() * window.innerWidth}px`; // Random horizontal position
+        img.style.transform = `rotate(${Math.random() * 360}deg)`; // Random rotation
+
+        images.push(img);
+        document.body.appendChild(img);
+      }
+
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+        images.forEach((img, index) => {
+          const offset = scrollY * (index + 1) * 0.01; // Scale effect based on scroll position
+          img.style.transform = `rotate(${offset + index * 5}deg)`;
+        });
+      });
+    </script>
+  </body>
+</html>
